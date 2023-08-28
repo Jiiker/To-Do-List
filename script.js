@@ -31,9 +31,23 @@ newTodo[0].addEventListener('click', (event) => {
   })
 
   modBtn.addEventListener('click', (event) => {
-    const tempTextBox = document.createElement("input");
-
-    tempTextBox.setAttribute('type', 'text');
+    event.preventDefault();
+    const tempTextBox = document.createElement("form");
+    const tempTextInput = document.createElement("input");
+    tempTextBox.appendChild(tempTextInput);
     newContent.appendChild(tempTextBox);
+
+    tempTextInput.setAttribute('type', 'text');
+    tempTextInput.placeholder="할 일을 입력해주세요.";
+    tempTextInput.required;
+
+    function handleToDoSubmit (event) {
+      event.preventDefault();
+      const whattodo = tempTextInput.value;
+      tempTextInput.value = "";
+      newContent.innerText = whattodo;
+    }
+    
+    tempTextBox.addEventListener("submit", handleToDoSubmit);
   })
 })
