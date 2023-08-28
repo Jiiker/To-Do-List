@@ -1,0 +1,96 @@
+body {
+  background-color: lightcoral;
+  font-family: Arial;
+
+  margin: 0;
+  padding-top: 80px;
+  padding-left: 96px;
+  padding-right: 90px;
+}
+
+.header {
+  height: 55px;
+
+  display: flex;
+  
+  flex-direction: row;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.title {
+  color : white;
+  cursor : pointer;
+
+  position: relative;
+  top: 0px;
+  left: 30px;
+}
+
+.new-todo {
+  color : white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor : pointer;
+  
+  position : relative;
+  top: 30px;
+  right: 20px;
+
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-position:under;
+}
+
+.list-box {
+  display: grid;
+}
+
+.list {
+  height: 90px;
+  border-radius: 15px;
+
+  margin-bottom: 20px;
+
+  background-color: lightblue;
+  display: flex;
+  align-items : center;
+  justify-content: space-around;
+}
+
+.list-checkbox {
+  cursor : pointer;
+
+  position : relative;
+  left : 30px;
+}
+
+.list-content {
+  font-size: 18px;
+  font-weight: bold;
+  flex-grow : 1;
+
+  position: relative;
+  left: 40px;
+}
+
+.list-modify {
+  width : 25px;
+  cursor : pointer;
+
+  position : relative;
+  right : 70px;
+}
+
+.list-delete {
+  width : 25px;
+  cursor : pointer;
+
+  position : relative;
+  right: 40px;
+}
