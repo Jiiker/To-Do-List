@@ -6,6 +6,8 @@ newTodo[0].addEventListener('click', (event) => {
   newList.className = "list";
   let dateKey = new Date().getTime();
   
+  let flag = 0;
+  
   const newCheckbox = document.createElement("input");
   newCheckbox.setAttribute('type','checkbox');
   newCheckbox.className="list-checkbox";
@@ -13,7 +15,7 @@ newTodo[0].addEventListener('click', (event) => {
   const newContent = document.createElement("div");
   newContent.textContent = "새로운 할 일";
   newContent.className="list-content";
-  localStorage.setItem(dateKey, newContent.textContent);
+  localStorage.setItem(dateKey, [newContent.textContent, newCheckbox.checked]);
 
   const modBtn = document.createElement("img");
   modBtn.className="list-modify";
@@ -32,26 +34,29 @@ newTodo[0].addEventListener('click', (event) => {
     event.currentTarget.parentNode.parentNode.removeChild(event.currentTarget.parentNode);
     localStorage.removeItem(dateKey);
   })
-
-  modBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    const tempTextBox = document.createElement("form");
-    const tempTextInput = document.createElement("input");
-    tempTextBox.appendChild(tempTextInput);
-    newContent.appendChild(tempTextBox);
-
-    tempTextInput.setAttribute('type', 'text');
-    tempTextInput.placeholder="할 일을 입력해주세요.";
-    tempTextInput.required;
-
-    tempTextBox.addEventListener ('submit', (event) => {
+  if (flag == 0) {
+    modBtn.addEventListener('click', (event) => {
       event.preventDefault();
-      const whattodo = tempTextInput.value;
-      tempTextInput.value = "";
-      newContent.innerText = whattodo;
-      localStorage.setItem(dateKey, whattodo);
+      flag = 1;
+      const tempTextBox = document.createElement("form");
+      const tempTextInput = document.createElement("input");
+      tempTextBox.appendChild(tempTextInput);
+      newContent.appendChild(tempTextBox);
+
+      tempTextInput.setAttribute('type', 'text');
+      tempTextInput.placeholder="할 일을 입력해주세요.";
+      tempTextInput.required;
+
+      tempTextBox.addEventListener ('submit', (event) => {
+        event.preventDefault();
+        flag = 0;
+        const whattodo = tempTextInput.value;
+        tempTextInput.value = "";
+        newContent.innerText = whattodo;
+        localStorage.setItem(dateKey, [whattodo, newCheckbox.checked]);
+      })
     })
-  })
+  }
 })
 
 function loadStorage() {
@@ -59,14 +64,18 @@ function loadStorage() {
   for(const key of keys) {
     const newList = document.createElement("li");
     newList.className = "list";
+    let flag = 0;
 
     const newCheckbox = document.createElement("input");
     newCheckbox.setAttribute('type','checkbox');
     newCheckbox.className="list-checkbox";
 
     const newContent = document.createElement("div");
-    newContent.textContent = localStorage.getItem(key);
     newContent.className="list-content";
+    newContent.textContent = localStorage.getItem(key).split(',')[0];
+    newCheckbox.checked = JSON.parse(localStorage.getItem(key).split(',')[1]);
+
+    console.log(newCheckbox.checked);
 
     const modBtn = document.createElement("img");
     modBtn.className="list-modify";
@@ -85,26 +94,28 @@ function loadStorage() {
       event.currentTarget.parentNode.parentNode.removeChild(event.currentTarget.parentNode);
       localStorage.removeItem(key);
     })
-
-    modBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-      const tempTextBox = document.createElement("form");
-      const tempTextInput = document.createElement("input");
-      tempTextBox.appendChild(tempTextInput);
-      newContent.appendChild(tempTextBox);
-
-      tempTextInput.setAttribute('type', 'text');
-      tempTextInput.placeholder="할 일을 입력해주세요.";
-      tempTextInput.required;
-
-      tempTextBox.addEventListener ('submit', (event) => {
-        event.preventDefault();
-        const whattodo = tempTextInput.value;
-        tempTextInput.value = "";
-        newContent.innerText = whattodo;
-        localStorage.setItem(key, whattodo);
+    if (flag == 0) {
+      modBtn.addEventListener('click', (event) => {
+        flag = 1;
+        const tempTextBox = document.createElement("form");
+        const tempTextInput = document.createElement("input");
+        tempTextBox.appendChild(tempTextInput);
+        newContent.appendChild(tempTextBox);
+  
+        tempTextInput.setAttribute('type', 'text');
+        tempTextInput.placeholder="할 일을 입력해주세요.";
+        tempTextInput.required;
+  
+        tempTextBox.addEventListener ('submit', (event) => {
+          event.preventDefault();
+          flag = 0;
+          const whattodo = tempTextInput.value;
+          tempTextInput.value = "";
+          newContent.innerText = whattodo;
+          localStorage.setItem(key, [whattodo, newCheckbox.checked]);
+        })
       })
-    })
+    }
   }
 }
 

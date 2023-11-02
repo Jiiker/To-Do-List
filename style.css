@@ -8,11 +8,16 @@ body {
   padding-right: 90px;
 }
 
+.wrapper {
+  max-width: 800px;
+  margin: auto;
+}
+
 .header {
   height: 55px;
 
   display: flex;
-  
+
   flex-direction: row;
   justify-content: space-between;
 
@@ -24,8 +29,8 @@ body {
 }
 
 .title {
-  color : white;
-  cursor : pointer;
+  color: white;
+  cursor: pointer;
 
   position: relative;
   top: 0px;
@@ -33,18 +38,18 @@ body {
 }
 
 .new-todo {
-  color : white;
+  color: white;
   font-size: 20px;
   font-weight: bold;
-  cursor : pointer;
-  
-  position : relative;
+  cursor: pointer;
+
+  position: relative;
   top: 30px;
   right: 20px;
 
   text-decoration: underline;
   text-decoration-thickness: 2px;
-  text-underline-position:under;
+  text-underline-position: under;
 }
 
 .list-box {
@@ -59,38 +64,38 @@ body {
 
   background-color: lightblue;
   display: flex;
-  align-items : center;
+  align-items: center;
   justify-content: space-around;
 }
 
 .list-checkbox {
-  cursor : pointer;
+  cursor: pointer;
 
-  position : relative;
-  left : 30px;
+  position: relative;
+  left: 30px;
 }
 
 .list-content {
   font-size: 18px;
   font-weight: bold;
-  flex-grow : 1;
+  flex-grow: 1;
 
   position: relative;
   left: 40px;
 }
 
 .list-modify {
-  width : 25px;
-  cursor : pointer;
+  width: 25px;
+  cursor: pointer;
 
-  position : relative;
-  right : 70px;
+  position: relative;
+  right: 70px;
 }
 
 .list-delete {
-  width : 25px;
-  cursor : pointer;
+  width: 25px;
+  cursor: pointer;
 
-  position : relative;
+  position: relative;
   right: 40px;
 }
