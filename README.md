@@ -1,4 +1,6 @@
 # To-Do-List
+![todoList](https://github.com/Jiiker/To-Do-List/assets/100774811/9762260d-c0e2-424a-ba9d-753e435742d0)
+
 
 - **새로운 todo 추가**하기
     - 구글링 등에서 나오는 todo앱은 텍스트 상자를 통해서 인풋을 받아 list를 만드는 것이었는데 이번 과제 예시에는 텍스트 상자가 없어서, ‘새로운 todo 만들기’를 눌러 리스트 상자를 만드는 것으로 구현
